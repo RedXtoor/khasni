@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khasni - Digital Store</title>
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap');
+
+        /* Base Styles */
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Science Gothic', 'Helvetica Neue', Arial, sans-serif;
+            background: #f8f9fa;
+            min-height: 100%;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .app-wrapper {
+            width: 100%;
+            min-height: 100%;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+        .tagline {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #6c757d;
+            font-weight: 400;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 2.5rem 0;
+            text-align: center;
+        }
+
+        /* Product Grid & Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .product-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e6e9f0 100%);
+            padding: 1rem;
+            font-size: 5rem;
+            color: #adb5bd;
+        }
+        .product-image img {
+            max-height: 100px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .product-image img.large-logo {
+            max-height: 200px; /* Increased from the default 100px */
+        }
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 0.5rem 0;
+        }
+        .product-description {
+            font-size: 0.95rem;
+            color: #6c757d;
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+        
+        /* Special text for the 'Order' card */
+        .order-text {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        /* Contact Button */
+        .contact-button {
+            display: block;
+            width: 100%;
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 0.875rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        .contact-button:hover {
+            background: #2563eb;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .tagline { font-size: 1rem; }
+            main { padding: 2rem 1rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <header role="banner">
+            <h1 id="store-name">Khasni</h1>
+            <p class="tagline" id="tagline">t7awes 3la logciel bach te9ra wela tekhdem rana hna</p>
+        </header>
+
+        <main role="main">
+            <h2 class="section-title" id="section-title">Featured Software</h2>
+            <div class="product-grid" id="product-grid"></div>
+        </main>
+
+        <footer role="contentinfo">
+            <p><strong>Disclaimer:</strong> This is a fictional website created for a school project. No actual products are for sale.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Array of software products with final updates
+        const products = [
+            { 
+                id: 1, 
+                name: "All Office 365", 
+                description: "Excel, PowerPoint, Word, Teams...", 
+                logo: "https://www.logo.wine/a/logo/Microsoft_Office/Microsoft_Office-Logo.wine.svg",
+                logoClass: "large-logo" 
+            },
+            { 
+                id: 2, 
+                name: "SolidWorks Any version", 
+                description: "Professional-grade CAD software for engineers and designers to create 3D models.", 
+                logo: "imgbin-solidworks-computer-aided-design-3d-computer-graphics-computer-software-work-red-and-white-s-and-w-cube-illustration-dEhhiCJB348z1tKeE8D3BvgeY_t-removebg-preview.png" 
+            },
+            { 
+                id: 3, 
+                name: "Adobe Creative Cloud", 
+                description: "All Adobe's software: Photoshop, Premiere Pro, Illustrator, After Effects.", 
+                logo: "https://www.pngall.com/wp-content/uploads/13/Adobe-Logo-PNG.png" 
+            },
+            { 
+                id: 4, 
+                name: "Anti-viruses", 
+                description: "Antivirus, VPN, and identity protection to keep all your devices safe.", 
+                logo: "antivirus-logo.png",
+                logoClass: "large-logo" 
+            },
+            {
+                id: 5,
+                name: "Windows Activation",
+                description: "Wanna remove that annoying windows watermark? I can do it for you!",
+                logo: "windows-logo.png"
+            },
+            {
+                id: 6,
+                name: "Problem solving",
+                description: "3andk problem fl pc ? ill solve for you!",
+                // This now points to a PNG file you need to create
+                logo: "problem-logo3-removebg-preview.png",
+                logoClass: "large-logo"
+            },
+            {
+                id: 7,
+                name: "Order a Software",
+                description: "Something specific you can't get your hands on? Order it now.",
+                // Logo is now null to trigger the special text
+                logo: null 
+            }
+        ];
+
+        // Function to render the products onto the page
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                
+             let imageContent;
+            // This logic now checks for a custom class
+            if (product.logo) {
+                const customClass = product.logoClass || ''; // Use the custom class or an empty string
+                imageContent = `<img src="${product.logo}" alt="${product.name} Logo" class="${customClass}">`;
+            } else if (product.name === "Order a Software") {
+                imageContent = `<span class="order-text">Order</span>`;
+            } else {
+                imageContent = `<span>?</span>`;
+            }
+
+                card.innerHTML = `
+                    <div class="product-image">
+                        ${imageContent}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <a href="https://t.me/RedX_C" target="_blank" class="contact-button">
+                            Contact to Inquire
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Run the render function when the page loads
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+</body>
+</html>
